@@ -12,7 +12,7 @@
 El proyecto que tenemos subido se trata de un script que permite la lectura de los sensores (acelerometro, pulsometro, humedad/temperatura e inclinación) 
 y posteriormente subirlo a Corlysis (un servicio de almacenamiento en la nube). 
 
-Además, empleamos Grafana para mostrar los datos recopilados de la Raspberry Pi 3 en formato de graficos y tener un muestreo constante de datos en todo 
+Además, empleamos Grafana para mostrar los datos recopilados de la Raspberry Pi 3b+ en formato de graficos y tener un muestreo constante de datos en todo 
 momento que se este ejecutando el script. 
 
 ## Código

@@ -47,7 +47,7 @@ class MMA7660FC:
         zAccl = data[2] & 0x3F
         if zAccl > 31 :
             zAccl -= 64
-        variables.sData = [xAccl,yAccl,zAccl]
+        variables.sData = [xAccl,  yAccl,  zAccl]
         print("Acceleration ({},{},{})".format(variables.sData[0],variables.sData[1],variables.sData[2]))
 class grove_fingerclip_heart_sensor:
     address = 0x50
@@ -100,19 +100,20 @@ if __name__=='__main__':
     # el while no creo que haga falta porque solo se quiere hacer cuando se mande una señal
     while True:
         # Guardar en csv Un log de inicio de programa
-        my=logging.info('Iniciamos las mediciones')
+        my=logging.info('iniciamos las mediciones')
         with open("log.csv", "a+", newline ='\n') as csvfile:
-           wr = csv.writer(csvfile, dialect='excel', delimiter='.', lineterminator="\n")
-           wr.writerow("Entrada correcta en el bucle")
+            wr = csv.writer(csvfile, dialect='excel', delimiter='.', lineterminator="\n")
+            wr.writerow("entrada correcta en el bucle")
+            csvfile.close
         try:
             pulso = sensorPulsometro.pulse_read()
             sData = sensorAcelerometro.acceleration_read()
             main()
             hum_temp_read()
-            payload = "values,place=miCasa humi={},temp={},tilt={},pulse={},ac1={},ac2={},ac3={}\n".format(variables.humi,variables.temp,variables.t,variables.pulso,variables.sData[0],variables.sData[1],variables.sData[2])
+            payload = "values,place=lab117 humi={},temp={},tilt={},pulse={},ac1={},ac2={},ac3={}\n".format(variables.humi,variables.temp,variables.t,variables.pulso,
+            variables.sData[0],variables.sData[1],variables.sData[2])
             r = requests.post(url, params=variables.params, data=payload)
             GPIO.cleanup()
-            time.sleep(1)
         except IOError:
         # Guardado en csv de un log de error
             myFields=logging.warning('Se ha generado un error del tipo IoErr, por lo que hemos tenido problemas en las mediciones')

@@ -109,7 +109,7 @@ if __name__=='__main__':
             sData = sensorAcelerometro.acceleration_read()
             main()
             hum_temp_read()
-            payload = "values,place=miCasa humi{},temp={},tilt={},pulse={},ac1={},ac2={},ac3={}\n".format(variables.humi,variables.temp,variables.t,variables.pulso,variables.sData[0],variables.sData[1],variables.sData[2])
+            payload = "values,place=miCasa humi={},temp={},tilt={},pulse={},ac1={},ac2={},ac3={}\n".format(variables.humi,variables.temp,variables.t,variables.pulso,variables.sData[0],variables.sData[1],variables.sData[2])
             r = requests.post(url, params=variables.params, data=payload)
             GPIO.cleanup()
             time.sleep(1)
